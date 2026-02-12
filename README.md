@@ -39,7 +39,40 @@ cd source
 make                # Build both debug and release versions
 make release        # Build only the release version
 make debug          # Build only the debug version
+make all            # Build both debug and release versions (same as 'make')
 make clean          # Remove object files and executables
+make remake         # Clean and rebuild everything
+make prep           # Create debug and release directories
+```
+
+### Build Process Details
+
+The build process involves several steps:
+
+1. **Prerequisites**: Ensure that gfortran compiler is installed on your system
+2. **Directory Setup**: The build creates `debug/` and `release/` subdirectories
+3. **Compilation**: Each `.FOR` source file is compiled to an object file (`.o`)
+4. **Linking**: Object files are linked to create the final executable
+
+### Compiler Flags
+
+- **Release version**: Uses `-falign-commons -Wno-align-commons -std=legacy`
+- **Debug version**: Uses `-falign-commons -Wno-align-commons -std=legacy -ggdb` (includes debugging symbols)
+
+### Executable Locations
+
+After building, executables are located at:
+- **Release version**: `source/release/OpenSES`
+- **Debug version**: `source/debug/OpenSES`
+
+The build system creates static executables using the `-static` linker flag, which embeds all necessary libraries into the executable for better portability.
+
+### Source Files
+
+The build process compiles 67 Fortran source files, including:
+- Main program: `DSES.FOR`
+- Core modules: `INPUT.FOR`, `TRAIN.FOR`, `AIR.FOR`, `HEAT.FOR`, etc.
+- Utility modules: `PRINT.FOR`, `SIMLAT.FOR`, `RSTREAD.FOR`, etc.
 ```
 
 ## Usage
