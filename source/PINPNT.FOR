@@ -52,9 +52,9 @@ C
 C                                                                       
 C                                                                       
 C                                                                       
-C**** LINE SEGMENT VARIABLE (LMLSS)                                     
-      DIMENSION  FLSS(LMLSS),AFSS(LMLSS), ABSS(LMLSS)                      
-      DATA  FLSS / 1200 * 0.0 /                                         
+C**** LINE SEGMENT VARIABLE (LMLSS)
+      DIMENSION  FLSS(LMLSS),AFSS(LMLSS), ABSS(LMLSS)
+      DATA  FLSS / 4800 * 0.0 /
 C                                                                       
       RECON = 4.0 * RHOMAS / VISAIR                                     
       HTCON = 0.022 * PR**0.6 * THCON                                   

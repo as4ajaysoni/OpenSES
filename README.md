@@ -30,6 +30,26 @@ The codebase is written in Fortran and follows a modular structure:
   - Output routines (`PRINT.FOR`)
   - And many others
 
+### Parameter Limits
+
+The maximum values for various parameters are defined in the `DSHARE` file:
+
+- **Sections**: Up to 3600 sections (`LMSECT = 3600`) - increased from original
+- **Nodes**: Up to 2400 aerodynamic nodes (`LMNODE = 2400`) and 2400 thermodynamic nodes (`LMTHND = 2400`) - increased from original
+- **Line Segments**: Up to 2480 line segments (`LMLSEG = 2480`) - increased from original
+- **Ventilation Shafts**: Up to 1624 ventilation shafts (`LMVSEG = 1624`) - increased from original
+- **Environmental Control Zones**: Up to 300 zones (`LMCLST = 300`) - increased from original
+- **Trains**: Up to 300 operational trains (`LMTRAN = 300`) of 64 different types (`LMTRTP = 64`) - increased from original
+- **Train Routes**: Up to 80 train routes (`LMTRRT = 80`) - increased from original
+- **Fan Types**: Up to 300 fan types (`LMFNTP = 300`) - increased from original
+- **Unsteady Heat Sources**: Up to 200 sources (`LMUL = 200`) - increased from original
+- **Print Groups**: Up to 100 print groups (`LMPRGP = 100`) - increased from original
+- **Flow Loops**: Up to 2000 flow loops (`LMNLOP = 2000`) - increased from original
+
+These limits define the maximum capacity of the simulation model. Note that some parameters may have interdependencies that need to be considered when increasing limits (e.g., `LMBLP` which is approximately 0.05*LMSECT²).
+
+Modern systems have sufficient RAM to handle these increased limits, allowing for much more complex subway system simulations than originally possible.
+
 ## Building the Project
 
 The project uses a makefile-based build system that compiles with gfortran:
@@ -45,7 +65,9 @@ make remake         # Clean and rebuild everything
 make prep           # Create debug and release directories
 ```
 
-**Note**: The pre-built executable in the `build/` directory is compiled for Linux x86-64 systems. For other platforms (Windows, macOS), you will need to build from source using the appropriate Fortran compiler for your platform.
+**Note**: For information about the pre-built executables in the `build/` directory, see the `build/README.md` file.
+
+For other platforms (Windows, macOS), you will need to build from source using the appropriate Fortran compiler for your platform.
 
 ### Build Process Details
 
