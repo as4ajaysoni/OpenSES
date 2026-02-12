@@ -4,19 +4,19 @@ This directory contains different versions of the OpenSES executable:
 
 ## Available Versions
 
-- **OpenSES** - Original version with standard parameter limits
-  - Compiled for Linux x86-64 systems
-  - Standard capacity limits as defined in the original code
-
-- **OpenSES_v4.2_linux** - Linux version with increased parameter limits
-  - Compiled for Linux x86-64 systems  
-  - Enhanced capacity with increased limits for larger models
-  - Supports larger subway system simulations than the original
-
 - **OpenSES_v4.2.exe** - Windows version with increased parameter limits
   - Compiled for Windows x86-64 systems
   - Enhanced capacity with increased limits for larger models
   - Supports larger subway system simulations than the original
+
+- **OpenSES_v4.2** - Linux version with increased parameter limits
+  - Compiled for Linux x86-64 systems  
+  - Enhanced capacity with increased limits for larger models
+  - Supports larger subway system simulations than the original
+
+- **OpenSES** - Original version with standard parameter limits
+  - Compiled for Linux x86-64 systems
+  - Standard capacity limits as defined in the original code
 
 - **OpenSES.exe** - Legacy Windows executable from original repository
 
