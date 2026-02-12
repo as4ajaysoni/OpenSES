@@ -55,7 +55,7 @@ prep:
 debug: $(DBGEXE)
 
 $(DBGEXE): $(DBGOBJS)
-	$(FCOMP) -o $(DBGEXE) $(DBGOBJS) -static 
+	$(FCOMP) -o $(DBGEXE) $(DBGOBJS) -static
 
 $(DBGDIR)/%.o: %.FOR
 	$(FCOMP) $(DBGFFLAGS) -c $< -o $@
@@ -63,10 +63,34 @@ $(DBGDIR)/%.o: %.FOR
 release: $(RELEXE)
 
 $(RELEXE): $(RELOBJS)
-	$(FCOMP) -o $(RELEXE) $(RELOBJS) -static 
+	$(FCOMP) -o $(RELEXE) $(RELOBJS) -static
 
 $(RELDIR)/%.o: %.FOR
 	$(FCOMP) $(RELFFLAGS) -c $< -o $@
+
+# Windows cross-compilation targets
+MINGW_FCOMP = x86_64-w64-mingw32-gfortran
+WINRELDIR = win64
+WINRELEXE = $(WINRELDIR)/$(EXE).exe
+WINENHANCEDDIR = win64_enhanced
+WINENHANCEDEXE = $(WINENHANCEDDIR)/$(EXE)_v4.2.exe
+
+win-all: win-release
+
+win-release: prep-win $(WINRELEXE)
+
+win-enhanced: 
+	./build_windows_enhanced.sh
+
+prep-win:
+	@mkdir -p $(WINRELDIR)
+
+$(WINRELEXE): $(addprefix $(WINRELDIR)/,$(SRCS:.FOR=.o))
+	$(MINGW_FCOMP) -o $@ $^ -static
+
+$(WINRELDIR)/%.o: %.FOR
+	@mkdir -p $(WINRELDIR)
+	$(MINGW_FCOMP) $(RELFFLAGS) -c $< -o $@
 
 
 

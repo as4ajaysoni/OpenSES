@@ -65,9 +65,41 @@ make remake         # Clean and rebuild everything
 make prep           # Create debug and release directories
 ```
 
+### Building for Windows (Cross-compilation)
+
+To build Windows executables from Linux, you can use cross-compilation with MinGW-w64:
+
+1. Install MinGW-w64 gfortran:
+   ```bash
+   sudo apt-get install gfortran-mingw-w64-x86-64
+   ```
+
+2. Build Windows executable:
+   ```bash
+   cd source
+   make win-release
+   ```
+
+This will create a Windows executable in the `source/win64/` directory.
+
+### Building Enhanced Version for Windows
+
+To build the enhanced version with increased parameter limits for Windows:
+
+```bash
+cd source
+make win-enhanced
+```
+
+This will create an enhanced Windows executable in the `source/win64_enhanced/` directory.
+
 **Note**: For information about the pre-built executables in the `build/` directory, see the `build/README.md` file.
 
-For other platforms (Windows, macOS), you will need to build from source using the appropriate Fortran compiler for your platform.
+The build directory includes executables for both Linux and Windows platforms:
+- Linux executables: Native Linux versions for x86-64 systems
+- Windows executables: Cross-compiled versions for Windows x86-64 systems
+
+For other platforms (macOS), you will need to build from source using the appropriate Fortran compiler for your platform.
 
 ### Build Process Details
 
