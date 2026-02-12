@@ -45,6 +45,8 @@ make remake         # Clean and rebuild everything
 make prep           # Create debug and release directories
 ```
 
+**Note**: The pre-built executable in the `build/` directory is compiled for Linux x86-64 systems. For other platforms (Windows, macOS), you will need to build from source using the appropriate Fortran compiler for your platform.
+
 ### Build Process Details
 
 The build process involves several steps:
@@ -81,8 +83,24 @@ The simulation is controlled through input files that define the subway network 
 
 To run a simulation:
 ```bash
-./build/OpenSES input_file.inp
+cd source
+make release
+./release/OpenSES input_file.inp
 ```
+
+The executable will generate output files with extensions like `.OUT` and `.RST` containing the simulation results.
+
+Example of running with a sample file:
+```bash
+cp samples/inferno.inp source/
+cd source
+make release
+./release/OpenSES inferno.inp
+```
+
+This will create output files such as `inferno.OUT` with the simulation results.
+
+**Platform Compatibility**: The executable in the `build/` directory is compiled for Linux x86-64 systems. For other platforms (Windows, macOS), you will need to build from source using the appropriate Fortran compiler for your platform.
 
 ## Input File Format
 
