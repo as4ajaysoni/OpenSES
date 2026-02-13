@@ -14,8 +14,10 @@ C
 C                                                                       
 C                                                                       
 C                                                                       
-      INCLUDE  'HEATUC'                                                 
-C                                                                       
+      INCLUDE  'HEATUC'
+C
+      INTEGER PERCENT
+C
 C                                                                       
    60 FORMAT (A1)
    61 FORMAT(A1,16(/), 44X,'END OF SIMULATION' )                       
@@ -86,7 +88,14 @@ C**** MAIN LOOP - CYCLE THROUGH INCREMENTING 'SYSTEM CLOCK' BY 'NDELT'
 C                 EACH CYCLE UNTIL 'NTIME' IS EQUAL TO 'MAXTIM'.        
 C                                                                       
   200 NTIME = NTIME + NDELT
-      IF (MOD(NTIME,1000) .LT. NDELT) WRITE (SCREEN, 80) NTIME/100.0
+      IF (MOD(NTIME,1000) .LT. NDELT) THEN
+        IF (MAXTIM .GT. 0) THEN
+          PERCENT = MIN(100, INT((NTIME/100.0) * 100.0 / MAXTIM))
+          WRITE (SCREEN, 80) NTIME/100.0
+        ELSE
+          WRITE (SCREEN, 80) NTIME/100.0
+        END IF
+      END IF
 C                                                                       
 C**** RESISTOR GRID CALCULATIONS ***************************************
 C                                                                       
@@ -260,8 +269,8 @@ C
   990 WRITE(OUT,61)CHAR(12)                                                   
       RETURN                                                            
 C                                                                       
-C---- IMPOSSIBLE SITUATION                                              
-C                                                                       
-  999 WRITE(OUT,998)CHAR(12)                                                    
-      CALL EXIT (EXITCODE)                                                              
-      END                                                               
+C---- IMPOSSIBLE SITUATION
+C
+  999 WRITE(OUT,998)CHAR(12)
+      CALL EXIT (EXITCODE)
+      END

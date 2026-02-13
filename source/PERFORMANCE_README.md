@@ -55,8 +55,7 @@ These optimizations particularly benefit the computational kernels in air flow c
 ## Usage Recommendations
 
 1. **Development/Debugging**: Use `make release` for better debugging support
-2. **Production Runs**: Use `make optimized` for good performance with reliability
-3. **Maximum Performance**: Use `make high-perf` when speed is critical and you've validated results
+2. **Production Runs**: Use `make high-perf` when maximum performance is critical
 
 ## Notes
 

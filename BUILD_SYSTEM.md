@@ -93,7 +93,6 @@ make win-all
 
 Testing with the `inferno.inp` sample file showed:
 - **Standard Release**: Baseline performance
-- **Optimized**: ~45% performance improvement
 - **High-Performance**: ~48% performance improvement
 
 Results may vary depending on hardware and input file complexity.

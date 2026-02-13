@@ -95,10 +95,9 @@ The build system creates executables for OpenSES version 4.3a with enhanced perf
 
 ## High-Performance Build Options
 
-OpenSES 4.3a includes multiple optimization levels:
+OpenSES 4.3a includes two optimization levels:
 
 - **Standard Release**: Baseline performance with standard optimizations
-- **Optimized Build**: ~45% performance improvement using moderate optimizations
 - **High-Performance Build**: ~48% performance improvement using aggressive optimizations
 
 For more details on the high-performance features, see [HIGH_PERFORMANCE_FEATURES.md](HIGH_PERFORMANCE_FEATURES.md).
