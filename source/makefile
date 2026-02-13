@@ -25,13 +25,13 @@ DBGEXE = $(DBGDIR)/$(EXE)_debug
 DBGOBJS = $(addprefix $(DBGDIR)/, $(OBJS))
 DBGFFLAGS = -falign-commons -Wno-align-commons -std=legacy -ggdb
 
-RELDIR = release
+RELDIR = temp_release
 RELEXE = $(RELDIR)/$(EXE)
 RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
 RELFFLAGS = -falign-commons -Wno-align-commons -std=legacy
 
 # High-performance release flags (new)
-HPDIR = high-perf
+HPDIR = temp_high-perf
 HPEXE = $(HPDIR)/$(EXE)
 HPOBJS = $(addprefix $(HPDIR)/, $(OBJS))
 HPFFLAGS = -falign-commons -Wno-align-commons -std=legacy -O3 -Ofast -march=native -mtune=native -ffast-math -funroll-loops -ftree-vectorize -floop-optimize
@@ -57,6 +57,7 @@ remake: clean all
 
 clean:
 	rm -f $(RELEXE) $(RELOBJS) $(DBGEXE) $(DBGOBJS) $(HPEXE) $(HPOBJS)
+	rm -rf temp_release temp_high-perf debug
 
 linux-all: prep-linux release debug high-perf
 
@@ -68,6 +69,7 @@ debug: debug_objects
 	gfortran -o ../builds/$(EXE)_debug debug/ACEST2.o debug/DTHTS2.o debug/FLYWHL.o debug/INPUT.o debug/LSINS.o debug/OMEGA5.o debug/PINPNT.o debug/RELHUM.o debug/SIMQ2.o debug/TRINS.o debug/AIR.o debug/EERROR.o debug/FORCE1.o debug/INTEXT.o debug/MAXMIN.o debug/OMGJ1.o debug/PRINT.o debug/RESIST.o debug/SUMARY.o debug/TRSLOP.o debug/ALCHAR.o debug/EQUAT.o debug/FORCEL.o debug/JINS.o debug/MMAX.o debug/OMGJ2.o debug/RKTHRM.o debug/THDERV.o debug/VSINS.o debug/WETBLB.o debug/AMPERE.o debug/CHECKI.o debug/EXTINT.o debug/GARAGE.o debug/JULIE.o debug/MMIN.o debug/OMGJ3.o debug/PSI.o debug/RSTREAD.o debug/THNODE.o debug/BEI.o debug/CHECKR.o debug/FCTORL.o debug/GRID.o debug/KEI.o debug/OMEGA1.o debug/OMGJ4.o debug/QDERIV.o debug/RSTWRITE.o debug/TORQUE.o debug/BER.o debug/CREAT2.o debug/HEAT.o debug/KER.o debug/OMEGA2.o debug/OMGJ5.o debug/QSQLP.o debug/SIMERR.o debug/TRAIN.o debug/WLLTM2.o debug/BESSEL.o debug/CREAT3.o debug/FINS.o debug/HEATUP.o debug/LATENT.o debug/OMEGA3.o debug/OMGJ6.o debug/QUARRK.o debug/SIMLAT.o debug/TRANST.o debug/DSES.o debug/FLOWAY.o debug/HOOKUP.o debug/LOCATE.o debug/OMEGA4.o debug/RATES.o debug/SIMQ1.o debug/TRIDG3.o debug/FILESUBS.o -static
 
 $(DBGEXE): $(DBGOBJS)
+	@mkdir -p $(DBGDIR)
 	$(FCOMP) -o $(DBGEXE) $(DBGOBJS) -static
 
 debug_objects:
@@ -160,6 +162,7 @@ release: $(RELEXE)
 	cp $(RELEXE) ../builds/$(EXE)_v4.3a_standard
 
 $(RELEXE): $(RELOBJS)
+	@mkdir -p $(RELDIR)
 	$(FCOMP) -o $(RELEXE) $(RELOBJS) -static
 
 $(RELDIR)/%.o: %.FOR
@@ -170,6 +173,7 @@ high-perf: $(HPEXE)
 	cp $(HPEXE) ../builds/$(EXE)_v4.3a_highperf
 
 $(HPEXE): $(HPOBJS)
+	@mkdir -p $(HPDIR)
 	$(FCOMP) -o $(HPEXE) $(HPOBJS) -static
 
 $(HPDIR)/%.o: %.FOR
