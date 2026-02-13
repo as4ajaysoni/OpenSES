@@ -52,35 +52,56 @@ Modern systems have sufficient RAM to handle these increased limits, allowing fo
 
 ## Building the Project
 
-The project uses a makefile-based build system that compiles with gfortran:
+The project uses an enhanced makefile-based build system that compiles with gfortran and supports multiple optimization levels:
 
+### Linux Builds
 ```bash
 cd source
-make                # Build both debug and release versions
-make release        # Build only the release version
+make                # Build debug, release, and high-perf versions
+make release        # Build only the standard release version
+make high-perf      # Build the high-performance version (~48% performance improvement)
 make debug          # Build only the debug version
-make all            # Build both debug and release versions (same as 'make')
-make clean          # Remove object files and executables
+make all            # Build all Linux versions (same as 'make')
+make clean          # Remove all object files and executables
 make remake         # Clean and rebuild everything
-make prep           # Create debug and release directories
+make prep           # Create all necessary directories
 ```
 
-### Building for Windows (Cross-compilation)
+### Windows Cross-Compilation
+To build Windows executables on Linux, you need MinGW-w64:
+```bash
+# Install MinGW-w64 gfortran (Ubuntu/Debian):
+sudo apt-get install gfortran-mingw-w64-x86-64
 
-To build Windows executables from Linux, you can use cross-compilation with MinGW-w64:
+# Then build Windows versions:
+make win-release        # Build Windows standard release
+make win-high-perf      # Build Windows high-performance version
+make win-all            # Build all Windows versions
+```
 
-1. Install MinGW-w64 gfortran:
-   ```bash
-   sudo apt-get install gfortran-mingw-w64-x86-64
-   ```
+### Complete Build (Linux and Windows)
+```bash
+# Using the build script:
+cd ..
+./build_all.sh
 
-2. Build Windows executable:
-   ```bash
-   cd source
-   make win-release
-   ```
+# Or manually:
+cd source
+make all        # Linux builds
+make win-all    # Windows builds (requires mingw)
+```
 
-This will create a Windows executable in the `source/win64/` directory.
+The build system creates executables for OpenSES version 4.3a with enhanced performance capabilities.
+
+## High-Performance Build Options
+
+OpenSES 4.3a includes multiple optimization levels:
+
+- **Standard Release**: Baseline performance with standard optimizations
+- **Optimized Build**: ~45% performance improvement using moderate optimizations
+- **High-Performance Build**: ~48% performance improvement using aggressive optimizations
+
+For more details on the high-performance features, see [HIGH_PERFORMANCE_FEATURES.md](HIGH_PERFORMANCE_FEATURES.md).
 
 ### Building Enhanced Version for Windows
 
