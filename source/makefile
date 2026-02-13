@@ -159,7 +159,7 @@ $(DBGDIR)/%.o: %.FOR
 
 release: $(RELEXE)
 	@mkdir -p ../builds
-	cp $(RELEXE) ../builds/$(EXE)_v4.3a_standard
+	$(FCOMP) -o ../builds/$(EXE)_v4.3a_standard $(RELOBJS) -static
 
 $(RELEXE): $(RELOBJS)
 	@mkdir -p $(RELDIR)
@@ -170,7 +170,7 @@ $(RELDIR)/%.o: %.FOR
 
 high-perf: $(HPEXE)
 	@mkdir -p ../builds
-	cp $(HPEXE) ../builds/$(EXE)_v4.3a_highperf
+	$(FCOMP) -o ../builds/$(EXE)_v4.3a_highperf $(HPOBJS) -static
 
 $(HPEXE): $(HPOBJS)
 	@mkdir -p $(HPDIR)

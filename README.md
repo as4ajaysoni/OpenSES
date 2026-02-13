@@ -111,11 +111,11 @@ cd source
 make win-enhanced
 ```
 
-This will create an enhanced Windows executable in the `source/win64_enhanced/` directory.
+This will create an enhanced Windows executable in the `builds/` directory.
 
-**Note**: For information about the pre-built executables in the `build/` directory, see the `build/README.md` file.
+**Note**: All executables (Linux and Windows) are now consolidated in the `builds/` directory.
 
-The build directory includes executables for both Linux and Windows platforms:
+The builds directory includes executables for both Linux and Windows platforms:
 - Linux executables: Native Linux versions for x86-64 systems
 - Windows executables: Cross-compiled versions for Windows x86-64 systems
 

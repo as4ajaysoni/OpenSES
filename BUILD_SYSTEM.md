@@ -23,17 +23,58 @@ OpenSES version 4.3a includes an enhanced build system supporting both Linux and
 
 ## Directory Structure
 
-After building, executables are placed in:
+After building, all executables are placed in the unified `builds/` directory:
 
 ### Linux Builds
 - `builds/OpenSES_v4.3a_standard` - Standard release
-- `builds/OpenSES_v4.3a_highperf` - High-performance version
-- `builds/OpenSES_debug` - Debug version
+- `builds/OpenSES_v4.3a_optimized` - Optimized release with moderate performance improvements
+- `builds/OpenSES_v4.3a_highperf` - High-performance version with ~48% performance improvement
+- `builds/OpenSES_debug` - Debug version with debugging symbols
 
 ### Windows Builds
 - `builds/OpenSES_v4.3a_standard.exe` - Standard Windows release
-- `builds/OpenSES_v4.3a_highperf.exe` - High-performance Windows version
-- `builds/OpenSES_v4.2.exe` - Enhanced Windows version
+- `builds/OpenSES_v4.3a_optimized.exe` - Optimized Windows release
+- `builds/OpenSES_v4.3a_highperf.exe` - High-performance Windows version with ~48% performance improvement
+- `builds/OpenSES_v4.2.exe` - Enhanced Windows version with increased parameter limits
+
+## Build Targets
+
+### Linux Targets
+
+- `make release` - Standard release build with basic optimizations
+- `make optimized` - Moderately optimized build (~45% performance improvement)
+- `make high-perf` - Aggressively optimized build (~48% performance improvement)
+- `make debug` - Debug build with debugging symbols
+- `make all` - Builds all Linux versions (release, debug, optimized, high-perf)
+- `make clean` - Removes all object files and executables
+
+### Windows Cross-Compilation Targets
+
+- `make win-release` - Windows release build (v4.3a) with basic optimizations
+- `make win-optimized` - Windows optimized build (v4.3a) with moderate optimizations
+- `make win-high-perf` - Windows high-performance build (v4.3a) with aggressive optimizations
+- `make win-all` - Builds all Windows versions
+- `make win-enhanced` - Builds the enhanced Windows version (existing functionality)
+
+## Directory Structure
+
+After building, all executables are placed in the unified `builds/` directory:
+
+### Linux Builds
+- `builds/OpenSES_v4.3a_standard` - Standard release
+- `builds/OpenSES_v4.3a_optimized` - Optimized release with moderate performance improvements
+- `builds/OpenSES_v4.3a_highperf` - High-performance version with ~48% performance improvement
+- `builds/OpenSES_debug` - Debug version with debugging symbols
+
+### Windows Builds
+- `builds/OpenSES_v4.3a_standard.exe` - Standard Windows release
+- `builds/OpenSES_v4.3a_optimized.exe` - Optimized Windows release
+- `builds/OpenSES_v4.3a_highperf.exe` - High-performance Windows version with ~48% performance improvement
+- `builds/OpenSES_v4.2.exe` - Enhanced Windows version with increased parameter limits
+
+## Old Directory Removal
+
+The old `build/` directory has been removed as all executables are now consolidated in the `builds/` directory for better organization and consistency.
 
 ## Prerequisites
 
