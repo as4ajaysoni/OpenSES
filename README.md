@@ -59,7 +59,7 @@ The project uses an enhanced makefile-based build system that compiles with gfor
 cd source
 make                # Build debug, release, and high-perf versions
 make release        # Build only the standard release version
-make high-perf      # Build the high-performance version (~48% performance improvement)
+make high-perf      # Build the high-performance version (2.6x faster execution)
 make debug          # Build only the debug version
 make all            # Build all Linux versions (same as 'make')
 make clean          # Remove all object files and executables
@@ -98,7 +98,7 @@ The build system creates executables for OpenSES version 4.3a with enhanced perf
 OpenSES 4.3a includes two optimization levels:
 
 - **Standard Release**: Baseline performance with standard optimizations
-- **High-Performance Build**: ~48% performance improvement using aggressive optimizations
+- **High-Performance Build**: 2.6x faster execution using aggressive optimizations
 
 For more details on the high-performance features, see [HIGH_PERFORMANCE_FEATURES.md](HIGH_PERFORMANCE_FEATURES.md).
 
